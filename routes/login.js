@@ -9,6 +9,7 @@ const router = new Router();
 router.use(bodyParser.json());
 router.use(cors());
 
+
 router.post('/login/teacher', async (req, res) => {
     console.log("Trying to log in");
     const { email, password } = req.body;

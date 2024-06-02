@@ -12,6 +12,11 @@ const app = express();
 
 const port = process.env.PORT;
 
+const cors = require("cors");
+app.use(cors());
+app.options("*", cors());
+
+
 app.use(bodyParser.json());
 
 app.use('/api', loginRoutes);
