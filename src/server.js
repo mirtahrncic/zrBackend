@@ -10,6 +10,8 @@ const resultsRoute = require('../routes/results.js');
 const app = express();
 //const port = 3001;
 
+const port = process.env.PORT;
+
 app.use(bodyParser.json());
 
 app.use('/api', loginRoutes);
@@ -23,5 +25,10 @@ app.use('/api', resultsRoute);
 /*app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });*/
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
 
 
