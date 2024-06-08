@@ -64,15 +64,15 @@ router.post('/gameFinish', async (req, res) => {
 
     try {
 
-       /* const query = `
+        const query = `
         INSERT INTO result (game_id, student_id, time, foundnumber)
         VALUES ($1, $2, $3, $4)
         ON CONFLICT (game_id, student_id)
         DO UPDATE SET time = EXCLUDED.time, foundnumber = EXCLUDED.foundnumber
         RETURNING id
-    `;*/
+    `;
         //dodaj provjeru je li netko vec rjesavao -> ako je, samo promijeni taj rezultat
-        const query = 'INSERT INTO result (game_id, student_id, time, foundnumber, student_name) VALUES ($1, $2, $3, $4, $5) RETURNING id';
+        //const query = 'INSERT INTO result (game_id, student_id, time, foundnumber, student_name) VALUES ($1, $2, $3, $4, $5) RETURNING id';
         const result = await db.query(query, [gameId, studentId, time, numberOfFound, studentName]);
 
         if(result.rows.length === 1) {
