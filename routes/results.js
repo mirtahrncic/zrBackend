@@ -12,7 +12,13 @@ router.post('/results', async (req, res) => {
     const { game_id } = req.body;
 
     try {
-        const query = 'SELECT student_id, time, foundnumber, student_name FROM result WHERE game_id = $1';
+        const query = `
+            SELECT student_id, time, foundnumber, student_name
+            FROM result
+            WHERE game_id = $1
+            ORDER BY foundnumber DESC, time ASC
+        `;
+        //const query = 'SELECT student_id, time, foundnumber, student_name FROM result WHERE game_id = $1';
         const resultsList = await db.query(query, [game_id]);
 
         console.log(resultsList);
