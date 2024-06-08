@@ -56,7 +56,7 @@ router.post('/newGame/add', async (req, res) => {
 
         /*raspored po 10x10 gridu*/
         const grid = [];
-        const n = 15, m = 15;
+        const n = 10, m = 10;
         for(let i = 0; i < n; i++) {
             const row = [];
             for(let j = 0; j < m; j++) {
@@ -132,6 +132,16 @@ router.post('/newGame/add', async (req, res) => {
             }
 
             console.log("Placed it with: ", start_x, ",", start_y, " and orientation: ", orientation);
+
+            //sada ako sam stvarno smjestila rijec, upisujem ju u grid
+            for(let j = 0; j < word.length; j++) {
+                const letter = word[j];
+                const letterPosition_x = start_x + j * step_x;
+                const letterPosition_y = start_y + j * step_y;
+
+                grid[letterPosition_x][letterPosition_y] = letter;
+            }
+
 
             startPositions.push(start_x);
             startPositions.push(start_y);
